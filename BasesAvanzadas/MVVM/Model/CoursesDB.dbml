@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LearnHub" Class="CoursesDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=PC-PACO;Initial Catalog=LearnHub;Integrated Security=True" SettingsObjectName="BasesAvanzadas.Properties.Settings" SettingsPropertyName="LearnHubConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.cursos" Member="cursos">
+    <Type Name="curso">
+      <Column Name="id_curso" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_del_curso" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Duracion_(Horas)]" Member="Duracion__Horas_" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="materias_id_materia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="profesor_id_profesor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="estudiantes_id_estudiante" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="materia_curso" Member="materia" ThisKey="materias_id_materia" OtherKey="id_materia" Type="materia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.materias" Member="materias">
+    <Type Name="materia">
+      <Column Name="id_materia" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="materia" Member="materia1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="materia_curso" Member="cursos" ThisKey="id_materia" OtherKey="materias_id_materia" Type="curso" />
+    </Type>
+  </Table>
+</Database>
